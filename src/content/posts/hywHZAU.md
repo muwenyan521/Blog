@@ -3,7 +3,7 @@ title: 何为华农，为何华农
 published: 2026-01-26
 pinned: false
 description: 来不及做ppt了于是写个帖子
-tags: [education，collage]
+tags: [education, collage]
 category: collage
 licenseName: "CC BY 4.0"
 author: renleihaokun

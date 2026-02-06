@@ -1,5 +1,6 @@
 ---
 import WidgetLayout from './WidgetLayout.astro';
+import { lineSwitchConfig } from '../../config'; // Import the centralized configuration
 
 interface Props {
 	class?: string;
@@ -8,12 +9,7 @@ interface Props {
 
 const { class: className, style } = Astro.props;
 
-const lines = [
-    { nameEn: "Cloudflare", nameZh: "优选", url: "https://blog.haokun.me", id: "cf-opt", icon: "logos:cloudflare-icon", isLocal: false, size: 27 },
-    { nameEn: "Cloudflare", nameZh: "默认", url: "https://blog.4848488.xyz", id: "cf-def", icon: "logos:cloudflare-icon", isLocal: false, size: 27 },
-    { nameEn: "EdgeOne", nameZh: "海外", url: "https://eo.blog.haokun.me", id: "eo", icon: "/assets/line-switch/icons/tencent-cloud-logo.svg", isLocal: true, size: 27 },
-    { nameEn: "ESA", nameZh: "海外", url: "https://esa.blog.haokun.me", id: "esa", icon: "/assets/line-switch/icons/ali-cloud.svg", isLocal: true, size: 24 },
-];
+const lines = lineSwitchConfig;
 ---
 
 <WidgetLayout name="线路切换" id="line-switch" class={className} style={style}>
@@ -176,7 +172,7 @@ const lines = [
     }
 
     async function checkLatency(url: string, id: string) {
-        const results = [];
+        const results: number[] = [];
         for (let i = 0; i < 10; i++) {
             const ms = await measurePing(url);
             results.push(ms);

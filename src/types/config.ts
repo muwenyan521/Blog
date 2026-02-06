@@ -235,7 +235,10 @@ type TwikooConfig = {
 	lang?: string;
 };
 
-export type LIGHT_DARK_MODE = typeof LIGHT_MODE | typeof DARK_MODE | typeof AUTO_MODE;
+export type LIGHT_DARK_MODE =
+	| typeof LIGHT_MODE
+	| typeof DARK_MODE
+	| typeof AUTO_MODE;
 
 export type WALLPAPER_MODE =
 	| typeof WALLPAPER_BANNER
@@ -304,6 +307,7 @@ export type WidgetComponentType =
 	| "site-stats" // 站点统计组件
 	| "calendar" // 日历组件
 	| "network-check" // 网络检查组件
+	| "line-switch" // 线路切换组件
 	| "custom";
 
 export type WidgetComponentConfig = {
@@ -414,3 +418,15 @@ export type PioConfig = {
 		}>;
 	};
 };
+
+export type Line = {
+	nameEn: string;
+	nameZh: string;
+	url: string;
+	id: string;
+	icon: string;
+	isLocal: boolean;
+	size: number;
+};
+
+export type LineSwitchConfig = Line[];

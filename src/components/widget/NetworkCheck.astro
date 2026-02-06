@@ -83,6 +83,9 @@ const { class: className, style } = Astro.props;
             if (host === 'blog.4848488.xyz') {
                 return 'https://ip.4848488.xyz/?act=get_ip_info';
             }
+            if (host === '6.blog.haokun.me') { // New condition for IPv6
+                return 'https://ipv6.haokun.me/?act=get_ip_info';
+            }
             return 'https://ip.haokun.me/?act=get_ip_info';
         }
         
@@ -125,7 +128,7 @@ const { class: className, style } = Astro.props;
             // Node
             const nodeEl = document.getElementById('net-node');
             if (nodeEl) {
-                const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz'];
+                const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz', '6.blog.haokun.me'];
                 if (allowedHosts.includes(window.location.hostname)) {
                     nodeEl.textContent = data.node?.name || 'Unknown';
                     nodeEl.closest('.flex-col')?.classList.remove('hidden');
@@ -159,7 +162,7 @@ const { class: className, style } = Astro.props;
             // RTT
             const rttContainer = document.getElementById('net-rtt-container');
             if (rttContainer) {
-                const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz'];
+                const allowedHosts = ['blog.haokun.me', 'blog.4848488.xyz', '6.blog.haokun.me'];
                 const rttValue = data.rtt;
                 const hasValidRtt = rttValue !== undefined && rttValue !== null && rttValue !== 0;
 

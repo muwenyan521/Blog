@@ -1,3 +1,4 @@
+// biome-ignore assist/source/organizeImports: <explanation>
 import type {
 	AnnouncementConfig,
 	CommentConfig,
@@ -11,6 +12,7 @@ import type {
 	SakuraConfig,
 	SidebarLayoutConfig,
 	SiteConfig,
+	LineSwitchConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
@@ -227,6 +229,55 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 	opacity: 0.8, // 壁纸透明度
 	blur: 1, // 背景模糊程度
 };
+
+export const lineSwitchConfig: LineSwitchConfig = [
+	// 线路切换配置
+	{
+		nameEn: "Cloudflare", // 线路名称（英文）
+		nameZh: "优选", // 线路名称（中文）
+		url: "https://blog.haokun.me", // 线路URL
+		id: "cf-opt", // 线路ID
+		icon: "logos:cloudflare-icon", // 线路图标
+		isLocal: false, // 是否为本地线路
+		size: 27, // 图标大小
+	},
+	{
+		nameEn: "Cloudflare",
+		nameZh: "默认",
+		url: "https://blog.4848488.xyz",
+		id: "cf-def",
+		icon: "logos:cloudflare-icon",
+		isLocal: false,
+		size: 27,
+	},
+	{
+		nameEn: "Cloudflare",
+		nameZh: "IPv6",
+		url: "https://6.blog.haokun.me",
+		id: "cf-ipv6",
+		icon: "logos:cloudflare-icon",
+		isLocal: false,
+		size: 27,
+	},
+	{
+		nameEn: "EdgeOne",
+		nameZh: "海外",
+		url: "https://eo.blog.haokun.me",
+		id: "eo",
+		icon: "/assets/line-switch/icons/tencent-cloud-logo.svg",
+		isLocal: true,
+		size: 27,
+	},
+	{
+		nameEn: "ESA",
+		nameZh: "海外",
+		url: "https://esa.blog.haokun.me",
+		id: "esa",
+		icon: "/assets/line-switch/icons/ali-cloud.svg",
+		isLocal: true,
+		size: 24,
+	},
+];
 
 export const navBarConfig: NavBarConfig = {
 	links: [
@@ -647,6 +698,7 @@ export const widgetConfigs = {
 	sakura: sakuraConfig,
 	fullscreenWallpaper: fullscreenWallpaperConfig,
 	pio: pioConfig, // 添加 pio 配置
+	lineSwitch: lineSwitchConfig, // Add lineSwitchConfig
 } as const;
 
 export const umamiConfig = {

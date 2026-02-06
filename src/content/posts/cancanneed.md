@@ -92,8 +92,6 @@ curl "https://ip.haokun.me/?act=get_ip_info"
 呜呜呜😭😭😭  
 
 # 开源  
-[项目地址][3]  
-
-[3]: https://github.com/renleihaokun/cancanneed-network  
+::github{repo="renleihaokun/cancanneed-network"}
 其实就是传到GitHub方便直接部署，省得来回复制粘贴  
 欢迎提交PR

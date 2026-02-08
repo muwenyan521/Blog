@@ -286,4 +286,8 @@ export const zh_CN: Translation = {
 	[Key.calendarOctober]: "10月",
 	[Key.calendarNovember]: "11月",
 	[Key.calendarDecember]: "12月",
+
+	// 收藏页面
+	[Key.favorites]: "行旅拾光",
+	[Key.favoritesSubtitle]: "车票、门票、明信片以及各种各样的回忆",
 };

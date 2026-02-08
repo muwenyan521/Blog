@@ -300,4 +300,8 @@ export const ja: Translation = {
 	[Key.calendarOctober]: "10月",
 	[Key.calendarNovember]: "11月",
 	[Key.calendarDecember]: "12月",
+
+	// お気に入りページ
+	[Key.favorites]: "お気に入り",
+	[Key.favoritesSubtitle]: "チケット、ポストカード、そして様々な思い出",
 };

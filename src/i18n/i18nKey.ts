@@ -280,6 +280,10 @@ enum I18nKey {
 	calendarOctober = "calendarOctober",
 	calendarNovember = "calendarNovember",
 	calendarDecember = "calendarDecember",
+
+	// 收藏页面
+	favorites = "favorites",
+	favoritesSubtitle = "favoritesSubtitle",
 }
 
 export default I18nKey;

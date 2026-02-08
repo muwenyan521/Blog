@@ -43,9 +43,10 @@ export const siteConfig: SiteConfig = {
 		friends: true, // 友链页面开关
 		projects: false, // 项目页面开关
 		skills: false, // 技能页面开关
-		timeline: false, // 时间线页面开关
+		timeline: true, // 时间线页面开关
 		albums: true, // 相册页面开关
 		devices: true, // 设备页面开关
+		favorites: true, // 收藏页面开关
 	},
 
 	// 顶栏标题配置
@@ -288,6 +289,11 @@ export const navBarConfig: NavBarConfig = {
 			name: "Gallery",
 			url: "/albums/",
 			icon: "material-symbols:photo-library",
+		},
+		{
+			name: "Favorites",
+			url: "/favorites/",
+			icon: "material-symbols:loyalty",
 		},
 		/*
 		{

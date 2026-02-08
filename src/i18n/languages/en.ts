@@ -297,4 +297,8 @@ export const en: Translation = {
 	[Key.calendarOctober]: "Oct",
 	[Key.calendarNovember]: "Nov",
 	[Key.calendarDecember]: "Dec",
+
+	// Favorites page
+	[Key.favorites]: "Favorites",
+	[Key.favoritesSubtitle]: "Tickets, postcards, and various memories",
 };

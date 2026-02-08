@@ -37,9 +37,11 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 			continue;
 		}
 
-		// 匹配车次 (G/D/K/T/Z + 数字)
-		const trainMatch = part.match(/^[GDKTZ]\d{1,4}$/i);
+		// 匹配车次 (G/D/K/T/Z + 数字 或 纯四位数字)
+		const trainMatch = part.match(/^([GDKTZ]\d{1,4}|\d{4})$/i);
 		if (trainMatch) {
+			// 简单过滤：如果是纯数字且在 2000-2099 之间，且后面还有更像日期的部分，则跳过以防误判年份
+			// 但由于普速列车确实包含这个区间，我们优先识别日期，剩下的 4 位数才识别为车次
 			type = 'TRAIN';
 			code = trainMatch[0].toUpperCase();
 			continue;

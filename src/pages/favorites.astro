@@ -51,13 +51,13 @@ const years = Object.keys(groupedFavorites).sort((a, b) => Number(b) - Number(a)
 
       <!-- 时间轴内容 -->
       <div class="relative px-4 md:px-0">
-        <!-- 轴线 -->
-        <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-dashed-line hidden md:block"></div>
+        <!-- 连贯轴线：移动端在左侧 [31px]，桌面端在中间 [1/2] -->
+        <div class="absolute left-[31px] md:left-1/2 top-0 bottom-0 w-px bg-dashed-line block"></div>
         
         {years.map((year) => (
           <div class="year-group mb-20 relative">
-            <!-- 年份标签 -->
-            <div class="flex md:justify-center mb-12 sticky top-24 z-30">
+            <!-- 年份标签：移动端向右偏移避免遮挡轴线 -->
+            <div class="flex justify-start md:justify-center mb-12 sticky top-24 z-30 pl-12 md:pl-0">
               <span class="px-6 py-1.5 rounded-full bg-[var(--primary)] text-white text-base font-black shadow-lg border-2 border-white dark:border-neutral-900 tracking-widest">
                 {year}
               </span>
@@ -88,8 +88,8 @@ const years = Object.keys(groupedFavorites).sort((a, b) => Number(b) - Number(a)
               </div>
             </div>
 
-            <!-- 移动端布局 -->
-            <div class="md:hidden space-y-8 border-l-2 border-neutral-100 dark:border-neutral-800 pl-8 ml-4">
+            <!-- 移动端布局：移除 border-l-2，改用全局绝对定位轴线 -->
+            <div class="md:hidden space-y-8 pl-8 ml-4">
               {groupedFavorites[year].map((item) => (
                 <div class="relative">
                   <div class="absolute -left-[33px] top-6 w-3 h-3 rounded-full bg-[var(--primary)] border-2 border-white dark:border-neutral-900"></div>

@@ -626,10 +626,10 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 		breakpoints: {
 			// 移动端断点：屏幕宽度小于768px
 			mobile: 768,
-			// 平板端断点：屏幕宽度小于1280px
-			tablet: 1280,
-			// 桌面端断点：屏幕宽度小于1280px
-			desktop: 1280,
+			// 平板端断点：合并进桌面端，统一从768px开始
+			tablet: 768,
+			// 桌面端断点：从768px开始
+			desktop: 768,
 		},
 		// 不同设备的布局模式
 		//hidden:不显示侧边栏(桌面端)   drawer:抽屉模式(移动端不显示)   sidebar:显示侧边栏

@@ -146,9 +146,8 @@ const initialRightSidebarHidden = defaultPostListLayout === "grid";
 // 动态网格布局类名 - 根据侧边栏模式调整列宽
 const gridCols = `
 	${mobileShowSidebar ? "grid-cols-1" : "grid-cols-1"}
-	${tabletShowSidebar ? "grid-cols-1" : "grid-cols-1"}
-	${desktopShowSidebar ? "lg:grid-cols-[17.5rem_1fr]" : "lg:grid-cols-1"}
-	${isBothSidebarMode ? "lg:grid-cols-[17.5rem_1fr_17.5rem]" : ""}
+	${desktopShowSidebar ? "md:grid-cols-[17.5rem_1fr]" : "md:grid-cols-1"}
+	${isBothSidebarMode ? "md:grid-cols-[17.5rem_1fr_17.5rem]" : ""}
 `
 	.trim()
 	.replace(/\s+/g, " ");
@@ -157,8 +156,7 @@ const gridCols = `
 const sidebarClass = `
 	mb-4 row-start-2 row-end-3 col-span-1 onload-animation
 	${mobileShowSidebar ? "block" : "hidden"}
-	${tabletShowSidebar ? "block row-start-2 row-end-3 col-span-1" : "hidden"}
-	${desktopShowSidebar ? "lg:block lg:row-start-1 lg:row-end-2 lg:max-w-[17.5rem] lg:col-start-1 lg:col-end-2" : "lg:hidden"}
+	${desktopShowSidebar ? "md:block md:row-start-1 md:row-end-2 md:max-w-[17.5rem] md:col-start-1 md:col-end-2" : "md:hidden"}
 `
 	.trim()
 	.replace(/\s+/g, " ");
@@ -170,7 +168,7 @@ const sidebarClass = `
 const rightSidebarClass = `
 	mb-4 col-span-1 onload-animation
 	${isBothSidebarMode && mobileShowSidebar ? "block row-start-3 row-end-4" : "hidden"}
-	${isBothSidebarMode ? "lg:block lg:row-start-1 lg:row-end-2 lg:max-w-[17.5rem] lg:col-start-3 lg:col-end-4" : "lg:hidden"}
+	${isBothSidebarMode ? "md:block md:row-start-1 md:row-end-2 md:max-w-[17.5rem] md:col-start-3 md:col-end-4" : "md:hidden"}
 	${initialRightSidebarHidden ? "hidden-in-grid-mode" : ""}
 `
 	.trim()
@@ -182,9 +180,8 @@ const rightSidebarClass = `
 const mainContentClass = `
 	transition-swup-fade overflow-hidden w-full
 	col-span-1 row-start-1 row-end-2
-	${tabletShowSidebar ? "col-span-1 row-start-1 row-end-2" : "col-span-1"}
-	${desktopShowSidebar ? "lg:col-start-2 lg:col-end-3" : "lg:col-span-1"}
-	${isBothSidebarMode ? "lg:col-start-2 lg:col-end-3" : ""}
+	${desktopShowSidebar ? "md:col-start-2 md:col-end-3" : "md:col-span-1"}
+	${isBothSidebarMode ? "md:col-start-2 md:col-end-3" : ""}
 `
 	.trim()
 	.replace(/\s+/g, " ");
@@ -1276,21 +1273,8 @@ body.no-banner-mode .absolute.w-full.z-30 {
     /* 在桌面端只显示左侧边栏和主内容 */
 }
 
-/* 平板设备Grid模式：使用单列布局，和手机端保持一致 */
-@media (min-width: 768px) and (max-width: 1023px) {
-    #main-grid[data-layout-mode="grid"] {
-        grid-template-columns: 1fr !important;
-        grid-template-rows: auto 1fr auto !important;
-    }
-    
-    #main-grid[data-layout-mode="grid"] #swup-container {
-        grid-column: 1 / 2;
-        grid-row: 1 / 2;
-    }
-}
-
-/* 桌面设备Grid模式：使用双列布局 */
-@media (min-width: 1280px) {
+/* 桌面和平台设备Grid模式：使用双列布局 */
+@media (min-width: 768px) {
     #main-grid[data-layout-mode="grid"] {
         grid-template-columns: 17.5rem 1fr !important;
     }

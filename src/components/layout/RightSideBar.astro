@@ -101,19 +101,13 @@ function renderComponent(component: any, index: number, _components: any[]) {
 <!-- 响应式样式和JavaScript -->
 <style>
   /* 响应式断点样式 */
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     #right-sidebar {
       display: var(--sidebar-mobile-display, block);
     }
   }
 
-  @media (min-width: 769px) and (max-width: 1024px) {
-    #right-sidebar {
-      display: var(--sidebar-tablet-display, block);
-    }
-  }
-
-  @media (min-width: 1025px) {
+  @media (min-width: 768px) {
     #right-sidebar {
       display: var(--sidebar-desktop-display, block);
     }

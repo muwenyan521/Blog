@@ -115,9 +115,9 @@ export class WidgetManager {
 		}
 
 		// 双侧边栏模式下，右侧边栏的组件在平板端自动隐藏
-		// 使用 Tailwind 标准断点：lg(1024px) 以下全部隐藏
+		// 现在合并了平板和桌面，从 md(768px) 开始显示
 		if (this.config.position === "both" && component.sidebar === "right") {
-			classes.push("hidden", "lg:block");
+			classes.push("hidden", "md:block");
 		}
 
 		// 添加响应式隐藏类名
@@ -128,10 +128,8 @@ export class WidgetManager {
 						classes.push("hidden", "md:block");
 						break;
 					case "tablet":
-						classes.push("md:hidden", "lg:block");
-						break;
 					case "desktop":
-						classes.push("lg:hidden");
+						classes.push("md:hidden");
 						break;
 				}
 			});

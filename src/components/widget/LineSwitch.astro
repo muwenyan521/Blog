@@ -74,16 +74,19 @@ const lines = lineSwitchConfig;
     }
 
     /* 悬停状态 - 背景加深效果 */
-    .line-item button:hover {
+    .line-item button:hover,
+    .line-item.tapped button {
         background: color-mix(in oklch, var(--primary), transparent 85%);
         color: var(--primary);
     }
-    .line-item:hover .line-name-en {
+    .line-item:hover .line-name-en,
+    .line-item.tapped .line-name-en {
         width: 71px;
         opacity: 1;
         margin-right: 4px;
     }
-    :global(.dark) .line-item button:hover {
+    :global(.dark) .line-item button:hover,
+    :global(.dark) .line-item.tapped button {
         background: color-mix(in oklch, var(--primary), transparent 80%);
         color: var(--primary);
     }
@@ -262,6 +265,32 @@ const lines = lineSwitchConfig;
 
             if (id && originalUrl) {
                 checkLatency(originalUrl, id);
+            }
+
+            // 记录最后一次交互的类型，以兼容 Windows 触控屏等混合设备
+            let lastPointerType = '';
+            item.addEventListener('pointerdown', (e) => {
+                lastPointerType = (e as PointerEvent).pointerType;
+            });
+
+            item.addEventListener('click', (e) => {
+                // 只有当用户确实是用手指或笔触碰时，才启用二次点击逻辑
+                const isTouchInteraction = lastPointerType === 'touch' || lastPointerType === 'pen';
+                
+                if (isTouchInteraction && !item.classList.contains('tapped')) {
+                    e.preventDefault();
+                    // 清除其他项的状态
+                    document.querySelectorAll('.line-item').forEach(i => i.classList.remove('tapped'));
+                    // 激活当前项展开
+                    item.classList.add('tapped');
+                }
+            });
+        });
+
+        // 点击外部区域时重置所有项的状态
+        document.addEventListener('click', (e) => {
+            if (!(e.target as HTMLElement).closest('.line-item')) {
+                document.querySelectorAll('.line-item').forEach(i => i.classList.remove('tapped'));
             }
         });
     }

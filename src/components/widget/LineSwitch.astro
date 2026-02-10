@@ -1,6 +1,6 @@
 ---
-import WidgetLayout from './WidgetLayout.astro';
-import { lineSwitchConfig } from '../../config'; // Import the centralized configuration
+import { lineSwitchConfig } from "../../config"; // Import the centralized configuration
+import WidgetLayout from "./WidgetLayout.astro";
 
 interface Props {
 	class?: string;
@@ -27,8 +27,8 @@ const lines = lineSwitchConfig;
                     <div class="flex items-center justify-between relative mr-4">
                         <div class="flex items-center gap-2 overflow-hidden">
                             <div class="flex items-center text-[14px] line-name">
-                                <span class="w-[71px] truncate text-left">{line.nameEn}</span>
-                                <span class="truncate">{line.nameZh}</span>
+                                <span class="line-name-en overflow-hidden opacity-0 w-0 whitespace-nowrap text-left">{line.nameEn}</span>
+                                <span class="line-name-zh truncate">{line.nameZh}</span>
                             </div>
                             <div class="flex items-center justify-center flex-shrink-0" style={`width: ${line.size}px; height: ${line.size}px`}>
                                 {line.isLocal ? (
@@ -78,6 +78,11 @@ const lines = lineSwitchConfig;
         background: color-mix(in oklch, var(--primary), transparent 85%);
         color: var(--primary);
     }
+    .line-item:hover .line-name-en {
+        width: 71px;
+        opacity: 1;
+        margin-right: 4px;
+    }
     :global(.dark) .line-item button:hover {
         background: color-mix(in oklch, var(--primary), transparent 80%);
         color: var(--primary);
@@ -112,6 +117,12 @@ const lines = lineSwitchConfig;
 
     .line-name {
         white-space: pre-wrap;
+    }
+
+    .line-name-en {
+        transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1), 
+                    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                    margin 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     /* 延迟徽章样式 - 默认极淡背景 */

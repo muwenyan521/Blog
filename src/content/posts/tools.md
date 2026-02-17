@@ -12,12 +12,18 @@ date: 2026-01-07
 pubDate: 2026-01-07
 permalink: "tools"
 ---
+# 伊雷娜随机图  
+<a href="https://elaina.haokun.me">*美丽* </a>      
+![屑魔女是对的](https://elaina.haokun.me)  
 
 # 谁问你了  
 <a href="https://swnl.haokun.me">*谁问你了* </a>  
+
 # Windows微信多开  
 <a href="https://wx.haokun.me">*虽然不是很好用* </a>  
+
 #   CF炸了
 <a href="https://error.haokun.me">*没错，全都炸了* </a>  
+
 # 查看当前网络信息  
 <a href="https://ip.haokun.me">*cf优选版* </a>&<a href="https://ip.4848488.xyz">*cf默认版* </a>  

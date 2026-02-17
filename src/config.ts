@@ -287,7 +287,7 @@ export const lineSwitchConfig: LineSwitchConfig = [
 		isLocal: false,
 		size: 27,
 	},
-	{
+	/*{
 		nameEn: "Netlify",
 		nameZh: "海外",
 		url: "https://netlify.blog.haokun.me",
@@ -295,7 +295,7 @@ export const lineSwitchConfig: LineSwitchConfig = [
 		icon: "logos:netlify-icon",
 		isLocal: false,
 		size: 27,
-	},
+	},*/
 	{
 		nameEn: "Render",
 		nameZh: "海外",

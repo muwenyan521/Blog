@@ -4,21 +4,27 @@
 </div>
 
 <script>
-  (function() {
+  (() => {
+    // 在函数顶层声明
+    let host;
+    const allowedHosts = [
+      'blog.haokun.me',
+      'blog.4848488.xyz',
+      'eo.blog.haokun.me',
+      'esa.blog.haokun.me',
+      '6.blog.haokun.me',
+      'localhost',
+      '127.0.0.1',
+      'render.blog.haokun.me',
+      'vercel.blog.haokun.me',
+      'netlify.blog.haokun.me',
+    ];
+    let warningDiv;
+
     try {
-      var host = window.location.hostname;
-      // 允许官方线路域名和本地开发环境
-      var allowedHosts = [
-        'blog.haokun.me',
-        'blog.4848488.xyz',
-        'eo.blog.haokun.me',
-        'esa.blog.haokun.me',
-        '6.blog.haokun.me',
-        'localhost',
-        '127.0.0.1'
-      ];
+      host = window.location.hostname;
       if (allowedHosts.indexOf(host) === -1) {
-        var warningDiv = document.getElementById('domain-warning');
+        warningDiv = document.getElementById('domain-warning');
         if (warningDiv) {
           warningDiv.style.display = 'block';
         }

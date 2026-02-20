@@ -458,12 +458,13 @@ export const commentConfig: CommentConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "这是一个公告", // 公告标题
-	content: "记得去相册看看 联通用户建议使用EdgeOne线路", // 公告内容
-	closable: true, // 允许用户关闭公告
+	content:
+		"本站近期将进行备案，届时haokun.me及其子域名将无法访问，该域名下小工具将关闭，访问博客请前往https://blog.haokun.dev", // 公告内容
+	closable: false, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
-		text: "Albums", // 链接文本
-		url: "/albums/", // 链接 URL
+		text: "临时域名", // 链接文本
+		url: "https://blog.haokun.dev", // 链接 URL
 		external: false, // 内部链接
 	},
 };

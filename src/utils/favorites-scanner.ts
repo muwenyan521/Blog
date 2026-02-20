@@ -37,6 +37,17 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 			continue;
 		}
 
+		// 匹配上海磁悬浮
+		if (
+			part.toUpperCase() === "SMT" ||
+			part.toLowerCase() === "shanghai maglev train"
+		) {
+			type = "TRAIN";
+			code = "SMT";
+			description = "上海磁悬浮";
+			continue;
+		}
+
 		// 匹配车次 (G/D/K/T/Z/S + 数字 或 纯四位数字)
 		const trainMatch = part.match(/^([GDKTZS]\d{1,4}|\d{4})$/i);
 		if (trainMatch) {

@@ -9,6 +9,7 @@ export interface FavoriteItem {
 	date: string;
 	mtime: number;
 	birthtime: number;
+	sequence: number;
 	meta?: {
 		type: string; // 'TRAIN' | 'FLIGHT' | 'MOVIE' | 'COLL'
 		code?: string; // 车次号或航班号
@@ -17,7 +18,7 @@ export interface FavoriteItem {
 
 /**
  * 智能提取文件名中的信息
- * 支持格式：G1724_2025-10-06.png, MU5678_旅行_20251006.jpg
+ * 支持格式：G1724_2025-10-06.png, MU5678_旅行_20251006_1.jpg
  */
 function parseFileInfo(fileName: string, fileMtime: Date) {
 	const parts = fileName.split("_");
@@ -25,9 +26,11 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 	let code = "MEMO";
 	let extractedDate = "";
 	let description = "";
+	let sequence = 0;
 
 	// 1. 尝试从各分段中提取信息
-	for (const part of parts) {
+	for (let i = 0; i < parts.length; i++) {
+		const part = parts[i];
 		// 匹配日期 (YYYY-MM-DD 或 YYYYMMDD)
 		const dateMatch = part.match(/(\d{4}-\d{2}-\d{2})|(\d{8})/);
 		if (dateMatch && !extractedDate) {
@@ -51,8 +54,6 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 		// 匹配车次 (G/D/K/T/Z/S + 数字 或 纯四位数字)
 		const trainMatch = part.match(/^([GDKTZS]\d{1,4}|\d{4})$/i);
 		if (trainMatch) {
-			// 简单过滤：如果是纯数字且在 2000-2099 之间，且后面还有更像日期的部分，则跳过以防误判年份
-			// 但由于普速列车确实包含这个区间，我们优先识别日期，剩下的 4 位数才识别为车次
 			type = "TRAIN";
 			code = trainMatch[0].toUpperCase();
 			continue;
@@ -63,6 +64,12 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 		if (flightMatch) {
 			type = "FLIGHT";
 			code = flightMatch[0].toUpperCase();
+			continue;
+		}
+
+		// 如果是最后一部分且是纯数字，视为序号
+		if (i === parts.length - 1 && /^\d+$/.test(part) && part.length < 4) {
+			sequence = Number.parseInt(part, 10);
 			continue;
 		}
 
@@ -87,6 +94,7 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 	return {
 		title,
 		date: finalDate,
+		sequence,
 		meta: { type, code },
 	};
 }
@@ -98,7 +106,8 @@ export async function scanFavorites(): Promise<FavoriteItem[]> {
 	if (!fs.existsSync(favoritesDir)) {
 		try {
 			fs.mkdirSync(favoritesDir, { recursive: true });
-		} catch (e) {}
+		} catch {
+		}
 		return [];
 	}
 
@@ -139,7 +148,8 @@ export async function scanFavorites(): Promise<FavoriteItem[]> {
 						title: info.title,
 						date: info.date,
 						mtime: new Date(info.date).getTime(),
-						birthtime: stats.birthtimeMs || stats.ctimeMs, // 记录创建时间
+						birthtime: stats.birthtimeMs || stats.ctimeMs,
+						sequence: info.sequence,
 						meta: info.meta,
 					});
 				}
@@ -155,7 +165,8 @@ export async function scanFavorites(): Promise<FavoriteItem[]> {
 		if (b.mtime !== a.mtime) {
 			return b.mtime - a.mtime;
 		}
-		// 2. 如果日期相同，按文件创建日期 (birthtime) 降序排列
-		return b.birthtime - a.birthtime;
+		// 2. 如果日期相同，按文件名序号 (sequence) 降序排列
+		// 这样序号大的在上面，序号小的在下面
+		return b.sequence - a.sequence;
 	});
 }

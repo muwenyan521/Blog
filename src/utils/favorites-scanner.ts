@@ -51,8 +51,8 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 			continue;
 		}
 
-		// 匹配车次 (G/D/K/T/Z/S + 数字 或 纯四位数字)
-		const trainMatch = part.match(/^([GDKTZS]\d{1,4}|\d{4})$/i);
+		// 匹配车次 (G/D/K/T/Z/S/C + 数字 或 纯四位数字)
+		const trainMatch = part.match(/^([GDKTZSC]\d{1,4}|\d{4})$/i);
 		if (trainMatch) {
 			type = "TRAIN";
 			code = trainMatch[0].toUpperCase();
@@ -106,8 +106,7 @@ export async function scanFavorites(): Promise<FavoriteItem[]> {
 	if (!fs.existsSync(favoritesDir)) {
 		try {
 			fs.mkdirSync(favoritesDir, { recursive: true });
-		} catch {
-		}
+		} catch {}
 		return [];
 	}
 

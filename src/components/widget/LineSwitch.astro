@@ -82,12 +82,12 @@ const lines = lineSwitchConfig;
                     opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                     margin 0.8s cubic-bezier(0.22, 1, 0.36, 1),
                     padding 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        max-height: 400px; /* 调小此值以优化贝塞尔曲线的视觉感知度 */
+        max-height: 2000px; /* 默认设置一个足够大的值，但会被脚本覆盖 */
         opacity: 1;
     }
 
     #line-switch-content.collapsed {
-        max-height: 0;
+        max-height: 0 !important;
         opacity: 0;
         margin-bottom: 0;
         margin-top: 0;
@@ -277,7 +277,7 @@ const lines = lineSwitchConfig;
 
     function initLineSwitchToggle() {
         const toggleBtn = document.getElementById('line-switch-toggle');
-        const content = document.getElementById('line-switch-content');
+        const content = document.getElementById('line-switch-content') as HTMLElement;
         const icon = document.getElementById('line-switch-icon');
         
         if (!toggleBtn || !content || !icon) return;
@@ -286,16 +286,37 @@ const lines = lineSwitchConfig;
         if (window.location.hostname === 'blog.haokun.me') {
             content.classList.add('collapsed');
             icon.classList.add('collapsed');
+            content.style.maxHeight = '0px';
         } else {
             content.classList.remove('collapsed');
             icon.classList.remove('collapsed');
+            content.style.maxHeight = content.scrollHeight + 'px';
         }
 
         toggleBtn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            content.classList.toggle('collapsed');
-            icon.classList.toggle('collapsed');
+            
+            if (content.classList.contains('collapsed')) {
+                // 展开
+                content.classList.remove('collapsed');
+                icon.classList.remove('collapsed');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                // 动画结束后释放高度限制
+                setTimeout(() => {
+                    if (!content.classList.contains('collapsed')) {
+                        content.style.maxHeight = 'none';
+                    }
+                }, 800);
+            } else {
+                // 收起
+                content.style.maxHeight = content.scrollHeight + 'px';
+                // 强制重绘
+                content.offsetHeight;
+                content.classList.add('collapsed');
+                icon.classList.add('collapsed');
+                content.style.maxHeight = '0px';
+            }
         });
     }
 

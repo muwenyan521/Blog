@@ -262,7 +262,7 @@ export const lineSwitchConfig: LineSwitchConfig = [
 	},
 	{
 		nameEn: "EdgeOne",
-		nameZh: "海外",
+		nameZh: "全球",
 		url: "https://eo.blog.haokun.me",
 		id: "eo",
 		icon: "/assets/line-switch/icons/tencent-cloud-logo.svg",

@@ -43,7 +43,7 @@ function parseFileInfo(fileName: string, fileMtime: Date) {
 		// 匹配上海磁悬浮
 		if (
 			part.toUpperCase() === "SMT" ||
-			part.toLowerCase() === "shanghai maglev train"
+			part.toLowerCase() === "shanghaimaglevtrain"
 		) {
 			type = "TRAIN";
 			code = "SMT";

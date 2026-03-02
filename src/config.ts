@@ -271,7 +271,7 @@ export const lineSwitchConfig: LineSwitchConfig = [
 	},
 	{
 		nameEn: "ESA",
-		nameZh: "海外",
+		nameZh: "全球",
 		url: "https://esa.blog.haokun.me",
 		id: "esa",
 		icon: "/assets/line-switch/icons/ali-cloud.svg",

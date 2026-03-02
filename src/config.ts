@@ -458,7 +458,7 @@ export const commentConfig: CommentConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "这是一个公告", // 公告标题
-	content: "记得去相册看看 联通用户建议使用EdgeOne线路", // 公告内容
+	content: "记得去相册和行旅拾光看看", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接

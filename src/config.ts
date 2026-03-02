@@ -234,18 +234,18 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 export const lineSwitchConfig: LineSwitchConfig = [
 	// 线路切换配置
 	{
-		nameEn: "Cloudflare", // 线路名称（英文）
-		nameZh: "优选", // 线路名称（中文）
+		nameEn: " ", // 线路名称（英文）
+		nameZh: "本站默认", // 线路名称（中文）
 		url: "https://blog.haokun.me", // 线路URL
-		id: "cf-opt", // 线路ID
-		icon: "logos:cloudflare-icon", // 线路图标
+		id: "default", // 线路ID
+		icon: "", // 线路图标
 		isLocal: false, // 是否为本地线路
 		size: 27, // 图标大小
 	},
 	{
 		nameEn: "Cloudflare",
-		nameZh: "默认",
-		url: "https://blog.4848488.xyz",
+		nameZh: "海外",
+		url: "https://cf.blog.haokun.me",
 		id: "cf-def",
 		icon: "logos:cloudflare-icon",
 		isLocal: false,

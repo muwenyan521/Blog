@@ -13,7 +13,22 @@ const lines = lineSwitchConfig;
 ---
 
 <WidgetLayout name="线路切换" id="line-switch" class={className} style={style}>
-    <div class="line-switch-container flex flex-col gap-2 mb-2">
+    <div slot="title-icon" class="ml-auto mr-4 flex items-center">
+        <button 
+            id="line-switch-toggle"
+            class="flex items-center justify-center w-8 h-8 rounded-lg bg-black/[0.03] dark:bg-white/[0.03] hover:bg-[color-mix(in_oklch,var(--primary),transparent_90%)] transition-all"
+            aria-label="Toggle collapse"
+        >
+            <iconify-icon 
+                id="line-switch-icon" 
+                icon="material-symbols:keyboard-arrow-up-rounded" 
+                width="24" 
+                height="24"
+                class="transition-transform duration-[800ms] text-[var(--primary)]"
+            ></iconify-icon>
+        </button>
+    </div>
+    <div id="line-switch-content" class="line-switch-container flex flex-col gap-2 mb-2 overflow-hidden transition-all duration-[800ms]">
         {lines.map((line) => (
             <a 
                 href={line.url}
@@ -61,6 +76,28 @@ const lines = lineSwitchConfig;
 </WidgetLayout>
 
 <style>
+    /* 展开/收起动画 */
+    #line-switch-content {
+        transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1), 
+                    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    margin 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                    padding 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        max-height: 400px; /* 调小此值以优化贝塞尔曲线的视觉感知度 */
+        opacity: 1;
+    }
+
+    #line-switch-content.collapsed {
+        max-height: 0;
+        opacity: 0;
+        margin-bottom: 0;
+        margin-top: 0;
+        pointer-events: none;
+    }
+
+    #line-switch-icon.collapsed {
+        transform: rotate(180deg);
+    }
+
     /* 默认状态 */
     .line-item button {
         background: color-mix(in oklch, var(--primary), transparent 95%);
@@ -238,7 +275,32 @@ const lines = lineSwitchConfig;
         }
     }
 
+    function initLineSwitchToggle() {
+        const toggleBtn = document.getElementById('line-switch-toggle');
+        const content = document.getElementById('line-switch-content');
+        const icon = document.getElementById('line-switch-icon');
+        
+        if (!toggleBtn || !content || !icon) return;
+
+        // 初始状态检查：如果域名是 blog.haokun.me 则收起
+        if (window.location.hostname === 'blog.haokun.me') {
+            content.classList.add('collapsed');
+            icon.classList.add('collapsed');
+        } else {
+            content.classList.remove('collapsed');
+            icon.classList.remove('collapsed');
+        }
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            content.classList.toggle('collapsed');
+            icon.classList.toggle('collapsed');
+        });
+    }
+
     function initLineSwitch() {
+        initLineSwitchToggle();
         const currentHostname = window.location.hostname;
         const currentPath = window.location.pathname;
         const currentSearch = window.location.search;

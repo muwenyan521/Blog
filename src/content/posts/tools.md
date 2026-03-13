@@ -17,7 +17,7 @@ permalink: "tools"
 ![屑魔女是对的](https://elaina.haokun.me)  
 
 # 伊雷娜挂机时钟  
-<a href="https://elaina.haokun.me">*还是美丽* </a>      
+<a href="https://clock.elaina.haokun.me">*还是美丽* </a>      
 ![屑魔女是对对的](https://imgbed.haokun.me/file/1773411236901_DSC06022_1.webp)
 
 # 谁问你了  

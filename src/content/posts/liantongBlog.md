@@ -62,7 +62,7 @@ image: "https://imgbed.haokun.me/file/1767337314334_image.png"
 ![image.png](https://imgbed.haokun.me/file/1767341097868_image.png)  
 *虽然网络出口只有北上广三个，延迟还是一百左右吧，但可以接受了*  
 
-### 为什么不用CF优选？  
+### 为什么不用EO优选？  
 因为优选只能喝418茶壶😅😅😅，默认也就俩ip（比之前快一点就行  
 ### 证书过期怎么办？  
 ~抛弃联通用户~或者改默认解析到EO续签  

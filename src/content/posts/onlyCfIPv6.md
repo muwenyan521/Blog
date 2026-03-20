@@ -52,4 +52,4 @@ Cf就会检测夹缝里的那个`默认`，只要你正确添加了`cname`记录
 自己找或者用我随便选的几个优选ip的优选域名`cf6.4848488.xyz`
 
 # 为什么用cloudflare  
-你看`EdgeOne`和`ESA`支持IPv6吗  
+你看`EdgeOne`和`ESA`支持优选吗  

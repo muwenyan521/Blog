@@ -1,13 +1,22 @@
 {
 	"mode": "external",
 	"title": "植",
-	"description": "各种植物体",
+	"description": "学植物学学的",
 	"cover": "https://imgbed.haokun.me/file/1766760728027_1765978504029.webp",
 	"location": "地球",
 	"tags": ["花", "草", "树", "菜"],
 	"layout": "Grid",
 	"columns": 4,
 	"photos": [
+		{
+			"src": "https://imgbed.haokun.me/file/1774015793452_DSC06174-已增强-NR.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1774015791911_DSC06342-已增强-NR.webp"
+		},
+		{
+			"src": "https://imgbed.haokun.me/file/1774015792948_DSC06317-已增强-NR.webp"
+		},
 		{
 			"src": "https://imgbed.haokun.me/file/1772941205869_DSC05905_1.webp"
 		},

@@ -1,10 +1,10 @@
 ---
+import FavoriteCard from "../components/FavoriteCard.astro";
 import { siteConfig } from "../config";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { scanFavorites } from "../utils/favorites-scanner";
-import FavoriteCard from "../components/FavoriteCard.astro";
 
 // 检查收藏页面是否启用
 if (!siteConfig.featurePages.favorites) {
@@ -15,18 +15,23 @@ if (!siteConfig.featurePages.favorites) {
 const favoritesData = await scanFavorites();
 
 // 按年份分组
-const groupedFavorites = favoritesData.reduce((groups, item) => {
-	const date = new Date(item.date);
-	const year = date.getFullYear().toString();
-	if (!groups[year]) {
-		groups[year] = [];
-	}
-	groups[year].push(item);
-	return groups;
-}, {} as Record<string, typeof favoritesData>);
+const groupedFavorites = favoritesData.reduce(
+	(groups, item) => {
+		const date = new Date(item.date);
+		const year = date.getFullYear().toString();
+		if (!groups[year]) {
+			groups[year] = [];
+		}
+		groups[year].push(item);
+		return groups;
+	},
+	{} as Record<string, typeof favoritesData>,
+);
 
 // 显式按年份降序排列，确保 2026 在 2025 之前
-const years = Object.keys(groupedFavorites).sort((a, b) => Number(b) - Number(a));
+const years = Object.keys(groupedFavorites).sort(
+	(a, b) => Number(b) - Number(a),
+);
 ---
 
 <MainGridLayout title={i18n(I18nKey.favorites)} description={i18n(I18nKey.favoritesSubtitle)}>

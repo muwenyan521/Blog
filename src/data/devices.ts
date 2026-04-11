@@ -16,5 +16,5 @@ export type DeviceCategory = {
 };
 
 export const devicesData: DeviceCategory = {
-	"我的设备": []
+	我的设备: [],
 };

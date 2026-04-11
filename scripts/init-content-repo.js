@@ -5,11 +5,11 @@
  * 帮助用户快速设置代码内容分离
  */
 
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
-import readline from "readline";
-import { fileURLToPath } from "url";
+import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import readline from "node:readline";
+import { fileURLToPath } from "node:url";
 import { loadEnv } from "./load-env.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -95,7 +95,7 @@ BCRYPT_SALT_ROUNDS=12
 			},
 		});
 		console.log("Content synchronized successfully");
-	} catch (error) {
+	} catch (_error) {
 		console.error(
 			"Content synchronization failed. Run manually: pnpm run sync-content",
 		);

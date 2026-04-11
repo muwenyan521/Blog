@@ -135,9 +135,9 @@ const isBothSidebarMode = sidebarLayoutConfig.position === "both";
 
 // 检查右侧边栏是否有组件
 const hasRightSidebarComponents =
-	(isBothSidebarMode &&
-		(widgetManager.getComponentsByPosition("top", "right").length > 0 ||
-		widgetManager.getComponentsByPosition("sticky", "right").length > 0));
+	isBothSidebarMode &&
+	(widgetManager.getComponentsByPosition("top", "right").length > 0 ||
+		widgetManager.getComponentsByPosition("sticky", "right").length > 0);
 
 // 检查默认布局模式，如果是 grid 模式，右侧边栏初始就应该隐藏
 const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";

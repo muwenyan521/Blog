@@ -1,8 +1,8 @@
 <script lang="ts">
-import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants.ts";
+import { AUTO_MODE, DARK_MODE, LIGHT_MODE } from "@constants/constants";
 import Icon from "@iconify/svelte";
-import { getStoredTheme, setTheme } from "@utils/setting-utils.ts";
-import type { LIGHT_DARK_MODE } from "@/types/config.ts";
+import { getStoredTheme, setTheme } from "@utils/setting-utils";
+import type { LIGHT_DARK_MODE } from "@/types/config";
 
 const seq: LIGHT_DARK_MODE[] = [LIGHT_MODE, DARK_MODE, AUTO_MODE];
 let mode: LIGHT_DARK_MODE = $state(getStoredTheme());
@@ -48,12 +48,12 @@ if (typeof window !== "undefined") {
 	};
 
 	// 检查Swup是否已经加载
-	if ((window as any).swup && (window as any).swup.hooks) {
-		(window as any).swup.hooks.on("content:replace", handleContentReplace);
+	if (window.swup?.hooks) {
+		window.swup.hooks.on("content:replace", handleContentReplace);
 	} else {
 		document.addEventListener("swup:enable", () => {
-			if ((window as any).swup && (window as any).swup.hooks) {
-				(window as any).swup.hooks.on("content:replace", handleContentReplace);
+			if (window.swup?.hooks) {
+				window.swup.hooks.on("content:replace", handleContentReplace);
 			}
 		});
 	}

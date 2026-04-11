@@ -5,24 +5,27 @@
 		"moduleResolution": "bundler",
 		"jsx": "react-jsx",
 		"jsxImportSource": "react",
-		"baseUrl": ".",
 		"strictNullChecks": true,
 		"allowJs": false,
 		"declaration": true,
+		"skipLibCheck": true,
+		"ignoreDeprecations": "6.0",
+		"baseUrl": ".",
 		"plugins": [
 			{
 				"name": "@astrojs/ts-plugin"
 			}
 		],
 		"paths": {
-			"@components/*": ["src/components/*"],
-			"@assets/*": ["src/assets/*"],
-			"@constants/*": ["src/constants/*"],
-			"@utils/*": ["src/utils/*"],
-			"@i18n/*": ["src/i18n/*"],
-			"@layouts/*": ["src/layouts/*"],
-			"@/*": ["src/*"]
+			"@components/*": ["./src/components/*"],
+			"@assets/*": ["./src/assets/*"],
+			"@constants/*": ["./src/constants/*"],
+			"@utils/*": ["./src/utils/*"],
+			"@i18n/*": ["./src/i18n/*"],
+			"@layouts/*": ["./src/layouts/*"],
+			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "dist", ".astro"]
 }

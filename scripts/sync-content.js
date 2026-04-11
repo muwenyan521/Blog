@@ -1,7 +1,7 @@
-import { execSync } from "child_process";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+import { execSync } from "node:child_process";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { loadEnv } from "./load-env.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -112,7 +112,7 @@ for (const mapping of contentMappings) {
 		const relPath = path.relative(path.dirname(destPath), srcPath);
 		fs.symlinkSync(relPath, destPath, "junction");
 		console.log(`Created symbolic link: ${mapping.dest} -> ${mapping.src}`);
-	} catch (error) {
+	} catch (_error) {
 		console.log(`Copying content: ${mapping.src} -> ${mapping.dest}`);
 		copyRecursive(srcPath, destPath);
 	}

@@ -26,9 +26,17 @@
 		"enabled": true,
 		"rules": {
 			"recommended": true,
+			"suspicious": {
+				"noUnknownAtRules": "off",
+				"noExplicitAny": "off"
+			},
+			"correctness": {
+				"noUnknownTypeSelector": "off",
+				"noUnknownProperty": "warn"
+			},
 			"style": {
-				"noParameterAssign": "error",
-				"useAsConstAssertion": "error",
+				"noParameterAssign": "off",
+				"useAsConstAssertion": "off",
 				"useDefaultParameterLast": "error",
 				"useEnumInitializers": "error",
 				"useSelfClosingElements": "error",
@@ -36,13 +44,20 @@
 				"noUnusedTemplateLiteral": "error",
 				"useNumberNamespace": "error",
 				"noInferrableTypes": "error",
-				"noUselessElse": "error"
+				"noUselessElse": "error",
+				"noDescendingSpecificity": "off"
 			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"quoteStyle": "double"
+		}
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true,
+			"cssModules": true
 		}
 	},
 	"overrides": [
@@ -57,6 +72,9 @@
 					"correctness": {
 						"noUnusedVariables": "off",
 						"noUnusedImports": "off"
+					},
+					"suspicious": {
+						"noExplicitAny": "off"
 					}
 				}
 			}

@@ -745,9 +745,9 @@ function initCarousel() {
 function setupSakura() {
 	const sakuraConfig = (widgetConfigs as any)?.sakura;
 	if (!sakuraConfig || !sakuraConfig.enable) return;
-	if ((window as any).sakuraInitialized) return;
+	if (window.sakuraInitialized) return;
 	initSakura(sakuraConfig);
-	(window as any).sakuraInitialized = true;
+	window.sakuraInitialized = true;
 }
 
 if (document.readyState === 'loading') {
@@ -802,9 +802,9 @@ const setup = () => {
 			}
 			
 			// 重新初始化移动端 TOC 组件
-			if (typeof (window as any).mobileTOCInit === 'function') {
+			if (typeof window.mobileTOCInit === 'function') {
 				setTimeout(() => {
-					(window as any).mobileTOCInit();
+          window.mobileTOCInit?.();
 				}, 100);
 			}
 		}
@@ -818,8 +818,8 @@ const setup = () => {
 			
 			if (transparentMode === 'semifull') {
 				// 重新调用初始化函数来重新绑定滚动事件
-				if (typeof (window as any).initSemifullScrollDetection === 'function') {
-					(window as any).initSemifullScrollDetection()
+				if (typeof window.initSemifullScrollDetection === 'function') {
+					window.initSemifullScrollDetection()
 				}
 			}
 		}

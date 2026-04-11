@@ -1,46 +1,48 @@
-# build output
+# --- 构建输出 ---
 dist/
-
-# generated types
 .astro/
+.vercel/
 
-# dependencies
+# --- 依赖库 ---
+# 既然你使用 pnpm，锁定 pnpm-lock.yaml，忽略其他
 node_modules/
+package-lock.json
+yarn.lock
+bun.lockb
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# environment variables
+# --- 环境与机密 ---
 .env
 .env.production
+.env*.local
+.env.test
 
-# content repository (independent mode)
+# --- 日志与缓存 ---
+*-debug.log*
+*-error.log*
+.pnpm-debug.log*
+.eslintcache
+.stylelintcache
+cache/
+
+# --- 内容与备份 ---
 /content/
 *.backup
-
-# Large zip files
 *.zip
 
-# macOS-specific files
+# --- 操作系统 ---
 .DS_Store
+Thumbs.db
+*.icloud
 
-.vercel
-
-package-lock.json
-bun.lockb
-yarn.lock
-
-# ide
-.idea
+# --- IDE/编辑器 ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
 *.iml
+*.sublime-*
 
-cache/
+# --- 你的特定配置 ---
 fuwari/
 src/data/myself.ts
 src/pages/myself.astro
-
-# gemini prompt
-.gemini/

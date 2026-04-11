@@ -22,10 +22,10 @@ import { LinkPreset } from "./types/config";
 const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
-	title: "困",
-	subtitle: "并非demo",
-	siteURL: "https://blog.haokun.me/", // 请替换为你的站点URL，以斜杠结尾
-	siteStartDate: "2025-12-02", // 站点开始运行日期，用于站点统计组件计算运行天数
+	title: "wang",
+	subtitle: "maybe uncomplete?",
+	siteURL: "https://blog.wangxianming.top/", // 请替换为你的站点URL，以斜杠结尾
+	siteStartDate: "2026-04-11", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
 
@@ -52,7 +52,7 @@ export const siteConfig: SiteConfig = {
 	// 顶栏标题配置
 	navbarTitle: {
 		// 顶栏标题文本
-		text: "困",
+		text: "wang",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
 		icon: "assets/home/home.png",
 	},
@@ -138,9 +138,9 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "Stay Sleepy ~", // 主页横幅主标题
+			title: "Welcome to the Internet!", // 主页横幅主标题
 
-			subtitle: ["好困", "咕咕嘎嘎", "困啊", "咕嘎", "咕咕"],
+			subtitle: ["不想写qwq", "thanks to 困!"],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
@@ -236,74 +236,11 @@ export const lineSwitchConfig: LineSwitchConfig = [
 	{
 		nameEn: " ", // 线路名称（英文）
 		nameZh: "本站默认", // 线路名称（中文）
-		url: "https://blog.haokun.me", // 线路URL
+		url: "https://blog.wangxianming.top", // 线路URL
 		id: "default", // 线路ID
 		icon: "", // 线路图标
 		isLocal: false, // 是否为本地线路
 		size: 27, // 图标大小
-	},
-	{
-		nameEn: "Cloudflare",
-		nameZh: "海外",
-		url: "https://cf.blog.haokun.me",
-		id: "cf-def",
-		icon: "logos:cloudflare-icon",
-		isLocal: false,
-		size: 27,
-	},
-	{
-		nameEn: "Cloudflare",
-		nameZh: "IPv6",
-		url: "https://6.blog.haokun.me",
-		id: "cf-ipv6",
-		icon: "logos:cloudflare-icon",
-		isLocal: false,
-		size: 27,
-	},
-	{
-		nameEn: "EdgeOne",
-		nameZh: "全球",
-		url: "https://eo.blog.haokun.me",
-		id: "eo",
-		icon: "/assets/line-switch/icons/tencent-cloud-logo.svg",
-		isLocal: true,
-		size: 27,
-	},
-	{
-		nameEn: "ESA",
-		nameZh: "全球",
-		url: "https://esa.blog.haokun.me",
-		id: "esa",
-		icon: "/assets/line-switch/icons/ali-cloud.svg",
-		isLocal: true,
-		size: 27,
-	},
-	{
-		nameEn: "Vercel",
-		nameZh: "海外",
-		url: "https://vercel.blog.haokun.me",
-		id: "vercel",
-		icon: "logos:vercel-icon",
-		isLocal: false,
-		size: 27,
-	},
-	{
-		nameEn: "Netlify",
-		nameZh: "海外",
-		url: "https://netlify.blog.haokun.me",
-		id: "netlify",
-		icon: "logos:netlify-icon",
-		isLocal: false,
-		size: 27,
-	},
-	{
-		nameEn: "Render",
-		nameZh: "海外",
-		url: "https://render.blog.haokun.me",
-		id: "render",
-		icon: "/assets/line-switch/icons/render.svg",
-		isLocal: true,
-		size: 27,
 	},
 ];
 
@@ -409,29 +346,13 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "人类好困",
-	bio: "过客而已，就像不曾存在过",
+	name: "wang",
+	bio: "匆匆之中停留的过客",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
 		speed: 80, // 打字速度（毫秒）
 	},
-	links: [
-		{
-			name: "Bilibli",
-			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/356128765",
-		},
-		{
-			name: "GitHub",
-			icon: "fa6-brands:github",
-			url: "https://github.com/renleihaokun",
-		},
-		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
-			url: "https://steamcommunity.com/profiles/76561199093441277",
-		},
-	],
+	links: [],
 };
 
 export const licenseConfig: LicenseConfig = {
@@ -457,8 +378,8 @@ export const commentConfig: CommentConfig = {
 };
 
 export const announcementConfig: AnnouncementConfig = {
-	title: "这是一个公告", // 公告标题
-	content: "记得去相册和行旅拾光看看", // 公告内容
+	title: "公告", // 公告标题
+	content: "还没开发完！！！", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接

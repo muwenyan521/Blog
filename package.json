@@ -26,7 +26,7 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.8",
-		"@astrojs/cloudflare": "^13.1.8",
+		"@astrojs/cloudflare": "^12.6.13",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
 		"@astrojs/svelte": "7.2.2",
@@ -92,7 +92,8 @@
 		"fontmin": "^1.1.1",
 		"postcss-import": "^16.1.1",
 		"postcss-nesting": "^13.0.2",
-		"svelte-check": "^4.4.6"
+		"svelte-check": "^4.4.6",
+		"wrangler": "^4.81.1"
 	},
 	"packageManager": "pnpm@10.27.0",
 	"pnpm": {

@@ -22,8 +22,8 @@ import { LinkPreset } from "./types/config";
 const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
-	title: "wang",
-	subtitle: "maybe uncomplete?",
+	title: "wangxianming的博客",
+	subtitle: "maybe incomplete?",
 	siteURL: "https://blog.wangxianming.top/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2026-04-11", // 站点开始运行日期，用于站点统计组件计算运行天数
 
@@ -52,7 +52,7 @@ export const siteConfig: SiteConfig = {
 	// 顶栏标题配置
 	navbarTitle: {
 		// 顶栏标题文本
-		text: "wang",
+		text: "wangxianming",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.png
 		icon: "assets/home/home.png",
 	},
@@ -346,7 +346,7 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
-	name: "wang",
+	name: "wangxianming",
 	bio: "匆匆之中停留的过客",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果

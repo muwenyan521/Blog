@@ -235,10 +235,10 @@ export const lineSwitchConfig: LineSwitchConfig = [
 	// 线路切换配置
 	{
 		nameEn: "Cloudflare", // 线路名称（英文）
-		nameZh: "本站默认", // 线路名称（中文）
+		nameZh: "海外", // 线路名称（中文）
 		url: "https://blog.wangxianming.top", // 线路URL
 		id: "default", // 线路ID
-		icon: "", // 线路图标
+		icon: "logos:cloudflare-icon", // 线路图标
 		isLocal: false, // 是否为本地线路
 		size: 27, // 图标大小
 	},
@@ -247,7 +247,7 @@ export const lineSwitchConfig: LineSwitchConfig = [
 		nameZh: "海外", // 线路名称（中文）
 		url: "https://netlify.blog.wangxianming.top", // 线路URL
 		id: "netlify", // 线路ID
-		icon: "", // 线路图标
+		icon: "logos:netlify-icon", // 线路图标
 		isLocal: false, // 是否为本地线路
 		size: 27, // 图标大小
 	},

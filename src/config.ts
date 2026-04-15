@@ -242,6 +242,15 @@ export const lineSwitchConfig: LineSwitchConfig = [
 		isLocal: false, // 是否为本地线路
 		size: 27, // 图标大小
 	},
+	{
+		nameEn: "Netlify", // 线路名称（英文）
+		nameZh: "Netlify", // 线路名称（中文）
+		url: "https://netlify.blog.wangxianming.top", // 线路URL
+		id: "netlify", // 线路ID
+		icon: "", // 线路图标
+		isLocal: false, // 是否为本地线路
+		size: 27, // 图标大小
+	},
 ];
 
 export const navBarConfig: NavBarConfig = {
@@ -264,27 +273,6 @@ export const navBarConfig: NavBarConfig = {
 			url: "/favorites/",
 			icon: "material-symbols:loyalty",
 		},
-		/*
-		{
-			name: "Links",
-			url: "/links/",
-			icon: "material-symbols:link",
-			children: [
-				{
-					name: "GitHub",
-					url: "https://github.com/renleihaokun",
-					external: true,
-					icon: "fa6-brands:github",
-				},
-				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/356128765",
-					external: true,
-					icon: "fa6-brands:bilibili",
-				}
-			],
-		},
-		*/
 		{
 			name: "My",
 			url: "/content/",
@@ -370,7 +358,7 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const commentConfig: CommentConfig = {
-	enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+	enable: false, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
 	twikoo: {
 		envId: "https://renleihaokun-twikoo.netlify.app/.netlify/functions/twikoo",
 		lang: "zh-CN", // 设置 Twikoo 评论系统语言为中文

@@ -5,14 +5,20 @@ import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPostsList } from "../utils/content-utils";
 
+// 在服务端获取初始文章数据
 const sortedPostsList = await getSortedPostsList();
 ---
 
 <MainGridLayout title={i18n(I18nKey.archive)}>
-    <!-- 引入右侧边栏布局管理器 -->
   <script>
+    // 侧边栏交互逻辑
     import('../scripts/right-sidebar-layout.js');
   </script>
-    <ArchivePanel sortedPosts={sortedPostsList} client:only="svelte"></ArchivePanel>
-</MainGridLayout>
 
+  <ArchivePanel 
+    sortedPosts={sortedPostsList} 
+    tags={[]} 
+    categories={[]} 
+    client:only="svelte"
+  ></ArchivePanel>
+</MainGridLayout>

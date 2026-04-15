@@ -1,18 +1,15 @@
 <script lang="ts">
 import { onMount } from "svelte";
-
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getPostUrlByPermalink, getPostUrlBySlug } from "../utils/url-utils";
 
-export let tags: string[];
-export let categories: string[];
+export let tags: string[] = [];
+export let categories: string[] = [];
 export let sortedPosts: Post[] = [];
 
-const params = new URLSearchParams(window.location.search);
-tags = params.has("tag") ? params.getAll("tag") : [];
-categories = params.has("category") ? params.getAll("category") : [];
-const uncategorized = params.get("uncategorized");
+// 内部使用的响应式状态
+let groups: Group[] = [];
 
 interface Post {
 	id: string;
@@ -21,18 +18,8 @@ interface Post {
 		tags: string[];
 		category?: string | null;
 		published: Date;
-		permalink?: string; // 添加 permalink 字段
+		permalink?: string;
 	};
-}
-
-// 辅助函数：根据文章数据生成正确的 URL
-function getPostUrl(post: Post): string {
-	// 如果文章有自定义固定链接，优先使用固定链接
-	if (post.data.permalink) {
-		return getPostUrlByPermalink(post.data.permalink);
-	}
-	// 否则使用默认的 slug 路径
-	return getPostUrlBySlug(post.id);
 }
 
 interface Group {
@@ -40,7 +27,12 @@ interface Group {
 	posts: Post[];
 }
 
-let groups: Group[] = [];
+function getPostUrl(post: Post): string {
+	if (post.data.permalink) {
+		return getPostUrlByPermalink(post.data.permalink);
+	}
+	return getPostUrlBySlug(post.id);
+}
 
 function formatDate(date: Date) {
 	const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -49,119 +41,100 @@ function formatDate(date: Date) {
 }
 
 function formatTag(tagList: string[]) {
-	return tagList.map((t) => `#${t}`).join(" ");
+	return (tagList || []).map((t) => `#${t}`).join(" ");
 }
 
 onMount(async () => {
-	let filteredPosts: Post[] = sortedPosts;
+	// 从 URL 获取过滤参数
+	const params = new URLSearchParams(window.location.search);
+	const filterTags = params.has("tag") ? params.getAll("tag") : [];
+	const filterCategories = params.has("category")
+		? params.getAll("category")
+		: [];
+	const uncategorized = params.get("uncategorized");
 
-	if (tags.length > 0) {
+	let filteredPosts: Post[] = [...sortedPosts];
+
+	// 标签过滤
+	if (filterTags.length > 0) {
 		filteredPosts = filteredPosts.filter(
 			(post) =>
 				Array.isArray(post.data.tags) &&
-				post.data.tags.some((tag) => tags.includes(tag)),
+				post.data.tags.some((tag) => filterTags.includes(tag)),
 		);
 	}
 
-	if (categories.length > 0) {
+	// 分类过滤
+	if (filterCategories.length > 0) {
 		filteredPosts = filteredPosts.filter(
-			(post) => post.data.category && categories.includes(post.data.category),
+			(post) =>
+				post.data.category && filterCategories.includes(post.data.category),
 		);
 	}
 
+	// 未分类过滤
 	if (uncategorized) {
 		filteredPosts = filteredPosts.filter((post) => !post.data.category);
 	}
 
-	// 按发布时间倒序排序，确保不受置顶影响
-	filteredPosts = filteredPosts
-		.slice()
-		.sort((a, b) => b.data.published.getTime() - a.data.published.getTime());
+	// 排序：按发布时间倒序
+	filteredPosts.sort(
+		(a, b) => b.data.published.getTime() - a.data.published.getTime(),
+	);
 
+	// 分组逻辑
 	const grouped = filteredPosts.reduce(
 		(acc, post) => {
 			const year = post.data.published.getFullYear();
-			if (!acc[year]) {
-				acc[year] = [];
-			}
+			if (!acc[year]) acc[year] = [];
 			acc[year].push(post);
 			return acc;
 		},
 		{} as Record<number, Post[]>,
 	);
 
-	const groupedPostsArray = Object.keys(grouped).map((yearStr) => ({
-		year: Number.parseInt(yearStr, 10),
-		posts: grouped[Number.parseInt(yearStr, 10)],
-	}));
-
-	groupedPostsArray.sort((a, b) => b.year - a.year);
-
-	groups = groupedPostsArray;
+	groups = Object.keys(grouped)
+		.map((yearStr) => ({
+			year: Number.parseInt(yearStr, 10),
+			posts: grouped[Number.parseInt(yearStr, 10)],
+		}))
+		.sort((a, b) => b.year - a.year);
 });
 </script>
 
 <div class="card-base px-8 py-6">
-    {#each groups as group}
-        <div>
-            <div class="flex flex-row w-full items-center h-[3.75rem]">
-                <div class="w-[15%] md:w-[10%] transition text-2xl font-bold text-right text-75">
-                    {group.year}
-                </div>
-                <div class="w-[15%] md:w-[10%]">
-                    <div
-                            class="h-3 w-3 bg-none rounded-full outline outline-[var(--primary)] mx-auto
-                  -outline-offset-[2px] z-50 outline-3"
-                    ></div>
-                </div>
-                <div class="w-[70%] md:w-[80%] transition text-left text-50">
-                    {group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount)}
-                </div>
-            </div>
+	{#each groups as group}
+		<div>
+			<div class="flex flex-row w-full items-center h-[3.75rem]">
+				<div class="w-[15%] md:w-[10%] transition text-2xl font-bold text-right text-75">
+					{group.year}
+				</div>
+				<div class="w-[15%] md:w-[10%]">
+					<div class="h-3 w-3 bg-none rounded-full outline outline-[var(--primary)] mx-auto -outline-offset-[2px] z-50 outline-3"></div>
+				</div>
+				<div class="w-[70%] md:w-[80%] transition text-left text-50">
+					{group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount)}
+				</div>
+			</div>
 
-            {#each group.posts as post}
-                <a
-                        href={getPostUrl(post)}
-                        aria-label={post.data.title}
-                        class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
-                >
-                    <div class="flex flex-row justify-start items-center h-full">
-                        <!-- date -->
-                        <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
-                            {formatDate(post.data.published)}
-                        </div>
-
-                        <!-- dot and line -->
-                        <div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
-                            <div
-                                    class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5
-                       bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[var(--primary)]
-                       outline outline-4 z-50
-                       outline-[var(--card-bg)]
-                       group-hover:outline-[var(--btn-plain-bg-hover)]
-                       group-active:outline-[var(--btn-plain-bg-active)]"
-                            ></div>
-                        </div>
-
-                        <!-- post title -->
-                        <div
-                                class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-bold
-                     group-hover:translate-x-1 transition-all group-hover:text-[var(--primary)]
-                     text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
-                        >
-                            {post.data.title}
-                        </div>
-
-                        <!-- tag list -->
-                        <div
-                                class="hidden md:block md:w-[15%] text-left text-sm transition
-                     whitespace-nowrap overflow-ellipsis overflow-hidden text-30"
-                        >
-                            {formatTag(post.data.tags)}
-                        </div>
-                    </div>
-                </a>
-            {/each}
-        </div>
-    {/each}
+			{#each group.posts as post}
+				<a href={getPostUrl(post)} aria-label={post.data.title} class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]">
+					<div class="flex flex-row justify-start items-center h-full">
+						<div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
+							{formatDate(post.data.published)}
+						</div>
+						<div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
+							<div class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5 bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[var(--primary)] outline outline-4 z-50 outline-[var(--card-bg)] group-hover:outline-[var(--btn-plain-bg-hover)] group-active:outline-[var(--btn-plain-bg-active)]"></div>
+						</div>
+						<div class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-bold group-hover:translate-x-1 transition-all group-hover:text-[var(--primary)] text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden">
+							{post.data.title}
+						</div>
+						<div class="hidden md:block md:w-[15%] text-left text-sm transition whitespace-nowrap overflow-ellipsis overflow-hidden text-30">
+							{formatTag(post.data.tags)}
+						</div>
+					</div>
+				</a>
+			{/each}
+		</div>
+	{/each}
 </div>

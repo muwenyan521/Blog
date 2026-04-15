@@ -234,7 +234,7 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 export const lineSwitchConfig: LineSwitchConfig = [
 	// 线路切换配置
 	{
-		nameEn: " ", // 线路名称（英文）
+		nameEn: "Cloudflare", // 线路名称（英文）
 		nameZh: "本站默认", // 线路名称（中文）
 		url: "https://blog.wangxianming.top", // 线路URL
 		id: "default", // 线路ID
@@ -244,7 +244,7 @@ export const lineSwitchConfig: LineSwitchConfig = [
 	},
 	{
 		nameEn: "Netlify", // 线路名称（英文）
-		nameZh: "Netlify", // 线路名称（中文）
+		nameZh: "海外", // 线路名称（中文）
 		url: "https://netlify.blog.wangxianming.top", // 线路URL
 		id: "netlify", // 线路ID
 		icon: "", // 线路图标

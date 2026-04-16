@@ -16,15 +16,36 @@
 			}
 		],
 		"paths": {
-			"@components/*": ["./src/components/*"],
-			"@assets/*": ["./src/assets/*"],
-			"@constants/*": ["./src/constants/*"],
-			"@utils/*": ["./src/utils/*"],
-			"@i18n/*": ["./src/i18n/*"],
-			"@layouts/*": ["./src/layouts/*"],
-			"@/*": ["./src/*"]
+			"@components/*": [
+				"./src/components/*"
+			],
+			"@assets/*": [
+				"./src/assets/*"
+			],
+			"@constants/*": [
+				"./src/constants/*"
+			],
+			"@utils/*": [
+				"./src/utils/*"
+			],
+			"@i18n/*": [
+				"./src/i18n/*"
+			],
+			"@layouts/*": [
+				"./src/layouts/*"
+			],
+			"@/*": [
+				"./src/*"
+			]
 		}
 	},
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "dist", ".astro"]
+	"include": [
+		"src/**/*",
+		"./worker-configuration.d.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		".astro"
+	]
 }
